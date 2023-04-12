@@ -2,6 +2,8 @@
 
 Buildtea is a tool for connecting Gitea with Buildkite.
 
+![](https://files.deanpcmad.com/2023/B0hNS/photoshop_g1BM9yMbWg.png)
+
 ## Installation
 
 Docker is used to distribute this tool.
@@ -25,6 +27,8 @@ services:
       WAIT_FOR_TARGETS: |-
         buildtea-db:3306
       DATABASE_URL: mysql2://buildteauser:buildteapass@buildtea-db/buildtea?pool=10
+      # Generate a 128 character key and enter it here
+      SECRET_KEY_BASE: 
       # The full hostname of this app. Used when creating Gitea webhooks
       APP_HOST:
       # Used for HTTP Basic Auth
