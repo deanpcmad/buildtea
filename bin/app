@@ -15,14 +15,6 @@ case "$1" in
         run "bundle exec puma -C config/puma-prod.rb"
         ;;
 
-    worker)
-        run "bundle exec sidekiq"
-        ;;
-
-    # cron)
-    #     run "bundle exec rake intranet:cron"
-    #     ;;
-
     initialize)
         echo 'Initializing database'
         run "bundle exec rake db:create db:schema:load db:seed"
@@ -37,18 +29,12 @@ case "$1" in
         run "bundle exec rails console"
         ;;
 
-    # version)
-    #     run "bundle exec ruby script/version.rb"
-    #     ;;
-
     *)
         echo "Usage: app [command]"
         echo
         echo "Server components:"
         echo
         echo -e " * \033[35mweb-server\033[0m - run the web server"
-        echo -e " * \033[35mworker\033[0m - run the worker"
-        # echo -e " * \033[35mcron\033[0m - run the cron process"
         echo
         echo "Setup/upgrade tools:"
         echo
@@ -57,7 +43,6 @@ case "$1" in
         echo
         echo "Other tools:"
         echo
-        # echo -e " * \033[34mversion\033[0m - show the current Postal version"
         echo -e " * \033[34mconsole\033[0m - open an interactive console"
         echo
 esac
