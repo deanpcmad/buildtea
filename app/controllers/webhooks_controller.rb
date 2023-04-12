@@ -1,6 +1,7 @@
 class WebhooksController < ApplicationController
 
   skip_before_action :verify_authenticity_token
+  skip_before_action :auth
 
   def buildkite
     data = JSON.parse(request.body.read)
