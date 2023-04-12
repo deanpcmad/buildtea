@@ -2,51 +2,47 @@
   <%= link_to "Delete Repo", repo_path(@repo), class: "btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <% end %>
 
-<div class="col-8 offset-2">
-
-  <div class="card">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-3 mb-3">
-          Gitea Webhook URL
-        </div>
-        <div class="col-9">
-          <code><%= gitea_webhook_url(@repo.webhook_token) %></code>
-        </div>
-
-        <div class="col-3 mb-3">
-          Gitea Webhook Setup?
-        </div>
-        <div class="col-9">
-          <% if @repo.gitea_setup? %>
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-              <path d="M9 12l2 2l4 -4"></path>
-            </svg>
-          <% else %>
-            <%= link_to "Setup Webhook", gitea_repo_path(@repo), data: {turbo_method: :put} %>
-          <% end %>
-        </div>
-
-        <div class="col-3">
-          Buildkite Pipeline
-        </div>
-        <div class="col-9">
-          <% if @repo.buildkite_setup? %>
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-              <path d="M9 12l2 2l4 -4"></path>
-            </svg>
-            <%= link_to @repo.buildkite_slug, @repo.bk_url, target: "_blank" %>
-          <% else %>
-            <%= link_to "Create Pipeline", buildkite_repo_path(@repo), data: {turbo_method: :put} %>
-          <% end %>
-        </div>
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-3 mb-3">
+        Gitea Webhook URL
+      </div>
+      <div class="col-9">
+        <code><%= gitea_webhook_url(@repo.webhook_token) %></code>
       </div>
 
-    </div>
-  </div>
+      <div class="col-3 mb-3">
+        Gitea Webhook Setup?
+      </div>
+      <div class="col-9">
+        <% if @repo.gitea_setup? %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+            <path d="M9 12l2 2l4 -4"></path>
+          </svg>
+        <% else %>
+          <%= link_to "Setup Webhook", gitea_repo_path(@repo), data: {turbo_method: :put} %>
+        <% end %>
+      </div>
 
+      <div class="col-3">
+        Buildkite Pipeline
+      </div>
+      <div class="col-9">
+        <% if @repo.buildkite_setup? %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+            <path d="M9 12l2 2l4 -4"></path>
+          </svg>
+          <%= link_to @repo.buildkite_slug, @repo.bk_url, target: "_blank" %>
+        <% else %>
+          <%= link_to "Create Pipeline", buildkite_repo_path(@repo), data: {turbo_method: :put} %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
 </div>

@@ -1,24 +1,22 @@
-<div class="col-6 offset-3">
-  <div class="card">
-    <div class="card-body">
+<div class="card">
+  <div class="card-body">
 
-      <%= bootstrap_form_for @repo, data: {controller: "repo-form"} do |f| %>
-        <%= f.select :gitea_id, @gitea_repos, {prompt: "Select a Gitea Repo", label: "Gitea Repo"}, {data: { action: "change->repo-form#handleGiteaChange" }} %>
-        
-        <%= f.select :buildkite_slug, @buildkite_pipelines, {prompt: "Select a Buildkite Pipeline", label: "Buildkite Pipeline"}, {data: { action: "change->repo-form#handleBuildkiteChange" }} %>
+    <%= bootstrap_form_for @repo, data: {controller: "repo-form"} do |f| %>
+      <%= f.select :gitea_id, @gitea_repos, {prompt: "Select a Gitea Repo", label: "Gitea Repo"}, {data: { action: "change->repo-form#handleGiteaChange" }} %>
 
-        <%= f.hidden_field :repo_owner %>
-        <%= f.hidden_field :repo_name %>
-        <%= f.hidden_field :repo_url %>
-        
-        <%= f.hidden_field :buildkite_id %>
+      <%= f.select :buildkite_slug, @buildkite_pipelines, {prompt: "Select a Buildkite Pipeline", label: "Buildkite Pipeline"}, {data: { action: "change->repo-form#handleBuildkiteChange" }} %>
 
-        <%= f.text_field :name, required: true, help: "The name shown in Buildkite" %>
-        <%= f.text_field :description, label: "Description", help: "The description which will be shown in Buildkite"%>
+      <%= f.hidden_field :repo_owner %>
+      <%= f.hidden_field :repo_name %>
+      <%= f.hidden_field :repo_url %>
 
-        <%= f.submit %>
-      <% end %>
+      <%= f.hidden_field :buildkite_id %>
 
-    </div>
+      <%= f.text_field :name, required: true, help: "The name shown in Buildkite" %>
+      <%= f.text_field :description, label: "Description", help: "The description which will be shown in Buildkite"%>
+
+      <%= f.submit %>
+    <% end %>
+
   </div>
 </div>
