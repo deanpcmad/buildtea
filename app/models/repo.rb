@@ -37,7 +37,7 @@ class Repo < ApplicationRecord
   def create_webhook
     return if gitea_hook_id.present?
 
-    url = [ENV["APP_HOST"], "_gitea", webhook_token].join("/")
+    url = [ENV["APP_HOST"], "webhooks/gitea", webhook_token].join("/")
 
     webhook = Buildtea::GITEA_CLIENT.repo_hooks.create(owner: repo_owner, repo: repo_name, url: url, type: "gitea", active: true)
 
