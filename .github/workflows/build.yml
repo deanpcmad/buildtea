@@ -18,4 +18,4 @@ jobs:
         with:
           push: true
           target: "prod"
-          tags: ghcr.io/deanpcmad/buildtea:commit-${{ github.sha }}
+          tags: ghcr.io/deanpcmad/buildtea:commit-${{ github.sha }},ghcr.io/deanpcmad/buildtea:latest
