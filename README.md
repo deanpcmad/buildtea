@@ -28,7 +28,7 @@ services:
         buildtea-db:3306
       DATABASE_URL: mysql2://buildteauser:buildteapass@buildtea-db/buildtea?pool=10
       # Generate a 128 character key and enter it here
-      SECRET_KEY_BASE: 
+      SECRET_KEY_BASE:
       # The full hostname of this app. Used when creating Gitea webhooks
       APP_HOST:
       # Used for HTTP Basic Auth
@@ -79,11 +79,11 @@ for marking a build's status and also the Gitea commit status.
 
 When creating a new Repo, it will grab a list of all your Gitea repos and Buildkite pipelines.
 
-First, choose a repo
+First, choose a repo, then if you already have a Buildkite pipeline created, choose the pipeline. If not, then
+enter the name and description fields out as they will be used when creating a pipeline.
 
-### Gitea Webhooks
-
-After creating a repository, you'll see the unique Gitea webhook URL for that repo.
+You'll then be redirected to the repo page where you'll see the unique Gitea webhook URl for this repo. If you
+click the "Setup Webhook" link, it will create the webhook on your Gitea server for you.
 
 ### Buildkite Webhooks
 
