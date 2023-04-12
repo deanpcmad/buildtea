@@ -1,5 +1,10 @@
 <tr id="<%= dom_id(repo) %>">
   <td><%= link_to repo.full_name, repo %></td>
+  <td>
+    <% if repo.buildkite_setup? %>
+      <%= link_to repo.buildkite_slug, repo.bk_url, target: "_blank" %>
+    <% end %>
+  </td>
   <td><%= link_to "#{repo.builds.count} builds", builds_repo_path(repo) %></td>
   <td>
     <% build = repo.builds.last %>

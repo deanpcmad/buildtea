@@ -60,13 +60,21 @@ class ReposController < ApplicationController
   end
 
   def gitea
-    @repo.create_webhook
-    redirect_to repos_path
+    begin
+      @repo.create_webhook
+      redirect_to @repo, notice: "Gitea Webhook Created"
+    rescue
+      redirect_to @repo, alert: "Error creating Gitea Webhook. Make sure your Access Token has permissions to create webhooks"
+    end
   end
 
   def buildkite
-    @repo.create_pipeline
-    redirect_to repos_path
+    begin
+      @repo.create_pipeline
+      redirect_to @repo, notice: "Buildkite Pipeline Created"
+    rescue
+      redirect_to @repo, alert: "Error creating Buildkite Pipeline. Make sure your Access Token has permissions to create pipelines"
+    end
   end
 
   def create
