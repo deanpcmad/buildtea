@@ -109,7 +109,6 @@ GEM
       faraday (~> 2.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    honeybadger (5.1.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.5)
@@ -239,7 +238,6 @@ DEPENDENCIES
   dotenv-rails
   error_highlight (>= 0.4.0)
   gitearb
-  honeybadger (~> 5.0)
   importmap-rails
   jbuilder
   mysql2 (~> 0.5)
