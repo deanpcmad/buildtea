@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @title %> &bull; Buildtea</title>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="theme-light">
+
+    <header class="navbar navbar-expand-md navbar-dark d-print-none mb-3">
+      <div class="container">
+        <button class="navbar-toggler" data-bs-target="#navbar-menu" data-bs-toggle="collapse" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3" style="filter:none">
+          <a class="header-brand text-decoration-none" href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-analytics me-2 text-light" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M3 4m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1z"></path>
+              <path d="M7 20l10 0"></path>
+              <path d="M9 16l0 4"></path>
+              <path d="M15 16l0 4"></path>
+              <path d="M8 12l3 -3l2 2l3 -3"></path>
+            </svg>
+            <span class="fs-2">Buildtea</span>
+          </a>
+        </h1>
+
+        <div class="navbar-nav flex-row order-md-last">
+          <li class="nav-item"><%= active_link_to "Repos", repos_path, class: "nav-link" %></li>
+        </div>
+
+      </div>
+    </header>
+
+    <div class="container">
+      <%= render "layouts/flash" %>
+
+      <% if @title %>
+        <div class="page-header d-print-none">
+          <div class="container-xl">
+            <div class="row g-2 align-items-center">
+              <div class="col">
+                <h2 class="page-title">
+                  <%= @title %>
+                </h2>
+              </div>
+              <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                  <%= yield :buttons %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="page-body">
+        <%= yield %>
+      </div>
+    </div>
+
+    <footer class="py-4">
+      <p class="text-center text-muted mb-1">&copy; <%= Date.today.year %> <%= link_to "Buildtea", "https://github.com/deanpcmad/buildtea" %></p>
+      <p class="text-center text-muted mb-0">A Project by <a href="https://deanpcmad.com" class="text-muted">Dean</a>. <a href='https://ko-fi.com/deanpcmad' class="text-muted" target='_blank'>Buy me a Coffee?</a></p>
+    </footer>
+
+  </body>
+</html>

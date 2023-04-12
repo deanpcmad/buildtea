@@ -1,0 +1,16 @@
+<% content_for :buttons do%>
+  <%= link_to "Delete Repo", repo_path(@repo), class: "btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<% end %>
+
+<div class="col-8 offset-2">
+
+  <div class="card">
+    <div class="card-body">
+      <p>
+        <b>Gitea Webhook URL:</b>
+        <code class="float-end"><%= gitea_webhook_url(@repo.webhook_token) %></code>
+      </p>
+    </div>
+  </div>
+
+</div>

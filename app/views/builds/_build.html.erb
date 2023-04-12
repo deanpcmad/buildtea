@@ -1,0 +1,6 @@
+<tr id="<%= dom_id(build) %>">
+  <td><%= link_to "Build ##{build.number}", build.bk_url, target: "_blank" %></td>
+  <td><span class="badge <%= build.badge %>"><%= build.status.presence&.titleize %></span></td>
+  <td><%= build.branch %></td>
+  <td><%= build.author_name %></td>
+</tr>

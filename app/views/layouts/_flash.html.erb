@@ -1,0 +1,7 @@
+<div class="flash">
+  <% flash.each do |msg_type, message| %>
+    <div class="alert alert-important <%= bootstrap_class_for(msg_type) %>" data-controller="flash" data-action="animationend->flash#remove">
+      <div class="alert-message"><%= message %></div>
+    </div>
+  <% end %>
+</div>

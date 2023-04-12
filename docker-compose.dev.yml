@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  mysql:
+    container_name: buildtea-mysql
+    image: mysql:8
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=app
+
+  # redis:
+  #   container_name: buildtea-redis
+  #   image: "redis:6.2-alpine"
+  #   volumes:
+  #     - redis-data:/var/lib/redis
+
+volumes:
+  mysql-data:
+    driver: local
+  # redis-data:
+  #   driver: local

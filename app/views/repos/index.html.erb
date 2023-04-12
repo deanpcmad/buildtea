@@ -1,0 +1,22 @@
+<% content_for :buttons do%>
+  <%= link_to "New Repo", new_repo_path, class: "btn btn-primary" %>
+<% end %>
+
+<div class="col-8 offset-2">
+
+  <div class="card">
+    <table class="table card-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Builds</th>
+          <th>Latest Build</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @repos %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

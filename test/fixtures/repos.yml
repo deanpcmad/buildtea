@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account: one
+  name: MyString
+  gitea_id: MyString
+  buildkite_id: MyString
+  token: MyString
+
+two:
+  account: two
+  name: MyString
+  gitea_id: MyString
+  buildkite_id: MyString
+  token: MyString
