@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= @title %> &bull; Buildtea</title>
+    <title>Buildtea</title>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -32,7 +32,7 @@
         </h1>
 
         <div class="navbar-nav flex-row order-md-last">
-          <li class="nav-item"><%= active_link_to "Repos", repos_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Repos", repos_path, class: "nav-link" %></li>
         </div>
 
       </div>
