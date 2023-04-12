@@ -32,7 +32,6 @@ COPY --chown=app . .
 
 # Set the CMD
 ENTRYPOINT ["/opt/app/bin/docker-entrypoint"]
-# CMD ["rails", "s"]
 CMD ["app"]
 
 # ci target - use --target=ci to skip asset compilation
@@ -41,5 +40,9 @@ FROM base AS ci
 # prod target - default if no --target option is given
 FROM base AS prod
 
-RUN RAILS_GROUPS=assets bundle exec rake assets:precompile
+ENV RAILS_ENV=production
+ENV RAILS_LOG_TO_STDOUT=1
+ENV RAILS_SERVE_STATIC_FILES=1
+
+RUN SECRET_KEY_BASE=1 RAILS_GROUPS=assets bundle exec rake assets:precompile
 RUN touch /opt/app/public/assets/.prebuilt
