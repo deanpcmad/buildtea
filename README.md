@@ -38,7 +38,8 @@ services:
       # e.g. https://git.mycompany.com
       GITEA_SERVER:
       # An Access Token for your Gitea account with the following scopes:
-      # repo
+      # repo - read & write
+      # user - read
       GITEA_TOKEN:
       # An API Access Token with the following scopes:
       # read_builds write_builds read_pipelines write_pipelines
