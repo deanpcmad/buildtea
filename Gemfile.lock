@@ -75,7 +75,7 @@ GEM
       actionpack (>= 5.2)
       activemodel (>= 5.2)
     builder (3.2.4)
-    buildkiterb (0.2.0)
+    buildkiterb (1.0.0)
       faraday (~> 2.0)
     capybara (3.38.0)
       addressable
@@ -98,7 +98,7 @@ GEM
       railties (>= 3.2)
     error_highlight (0.5.1)
     erubi (1.12.0)
-    faraday (2.7.4)
+    faraday (2.7.10)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
@@ -233,7 +233,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   bootstrap_form (~> 5.0)
-  buildkiterb
+  buildkiterb (~> 1.0.0)
   capybara
   debug
   dotenv-rails

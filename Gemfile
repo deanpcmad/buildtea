@@ -19,7 +19,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 gem "gitearb"#, path: "../gems/gitearb"
-gem "buildkiterb"#, path: "../gems/buildkiterb"
+gem "buildkiterb", "~> 1.0.0"
 
 gem "bootstrap_form", "~> 5.0"
 
