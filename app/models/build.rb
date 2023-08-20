@@ -34,7 +34,7 @@ class Build < ApplicationRecord
   end
 
   def bk_url
-    "https://buildkite.com/#{ENV["BUILDKITE_SLUG"]}/#{repo.buildkite_slug}/builds/#{number}"
+    "https://buildkite.com/#{ENV["BUILDKITE_ORG"]}/#{repo.buildkite_slug}/builds/#{number}"
   end
 
   def buildkite_build
@@ -59,8 +59,7 @@ class Build < ApplicationRecord
   def create_buildkite_build
     return if number.present?
 
-    build = Buildtea::BUILDKITE_CLIENT.builds.create(
-      org: ENV["BUILDKITE_SLUG"],
+    build = Buildkite::Build.create(
       pipeline: repo.buildkite_slug,
       commit: commit,
       branch: branch,

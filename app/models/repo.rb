@@ -17,14 +17,13 @@ class Repo < ApplicationRecord
   end
 
   def bk_url
-    "https://buildkite.com/#{ENV["BUILDKITE_SLUG"]}/#{buildkite_slug}"
+    "https://buildkite.com/#{ENV["BUILDKITE_ORG"]}/#{buildkite_slug}"
   end
 
   def create_pipeline
     return if buildkite_id.present?
 
-    pipeline = Buildtea::BUILDKITE_CLIENT.pipelines.create(
-      org: ENV["BUILDKITE_SLUG"],
+    pipeline = Buildkite::Pipeline.create(
       name: name,
       repository: repo_url,
       description: description,

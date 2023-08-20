@@ -41,7 +41,7 @@ class ReposController < ApplicationController
       data: {owner: repo[:owner], name: repo[:name], desc: repo[:desc], url: repo[:url]}
     ]}
 
-    pipelines = Buildtea::BUILDKITE_CLIENT.pipelines.list org: ENV["BUILDKITE_SLUG"]
+    pipelines = Buildkite::Pipeline.list
 
     @buildkite_pipelines = pipelines.data.map{|pipeline| [
       pipeline.name,
