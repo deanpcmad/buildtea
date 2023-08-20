@@ -22,6 +22,5 @@ module Buildtea
     config.hosts.clear
   end
 
-  GITEA_CLIENT     ||= Gitea::Client.new(url: ENV["GITEA_SERVER"], access_token: ENV["GITEA_TOKEN"])
-  BUILDKITE_CLIENT ||= Buildkite::Client.new(token: ENV["BUILDKITE_TOKEN"])
+  GITEA_CLIENT ||= Gitea::Client.new(url: ENV["GITEA_SERVER"], access_token: ENV["GITEA_TOKEN"])
 end
