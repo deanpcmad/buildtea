@@ -1,48 +1,62 @@
-FROM ruby:3.1.2-alpine AS base
+# syntax = docker/dockerfile:1
 
-RUN apk update && \
-  apk add --no-cache build-base curl git nodejs bash \
-  # for mysql2
-  mysql-dev \
-  # for sassc-ruby
-  libc6-compat \
-  # for tzdata
-  tzdata \
-  yarn
+# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
+ARG RUBY_VERSION=3.2.2
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
-# Setup an application
-RUN adduser -S -h /opt/app -s /bin/sh app
-USER app
-WORKDIR /opt/app
+# Rails app lives here
+WORKDIR /rails
 
-# Configure 'app' command to work everywhere (when the binary exists
-# later in this process)
-ENV PATH="/opt/app/bin:${PATH}"
+# Set production environment
+ENV RAILS_ENV="production" \
+    BUNDLE_DEPLOYMENT="1" \
+    BUNDLE_PATH="/usr/local/bundle" \
+    BUNDLE_WITHOUT="development"
 
-RUN gem update --system
 
-# Install the latest and active gem dependencies and re-run
-# the appropriate commands to handle installs.
+# Throw-away build stage to reduce size of final image
+FROM base as build
+
+# Install packages needed to build gems
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential git libvips pkg-config
+
+# Install application gems
 COPY Gemfile Gemfile.lock ./
-RUN bundle install -j $(nproc)
+RUN bundle install && \
+    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
+    bundle exec bootsnap precompile --gemfile
 
-# Copy the application (and set permissions)
-# COPY ./docker/wait-for.sh /docker-entrypoint.sh
-COPY --chown=app . .
+# Copy application code
+COPY . .
 
-# Set the CMD
-ENTRYPOINT ["/opt/app/bin/docker-entrypoint"]
-CMD ["app"]
+# Precompile bootsnap code for faster boot times
+RUN bundle exec bootsnap precompile app/ lib/
 
-# ci target - use --target=ci to skip asset compilation
-FROM base AS ci
+# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
+RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
-# prod target - default if no --target option is given
-FROM base AS prod
 
-ENV RAILS_ENV=production
-ENV RAILS_LOG_TO_STDOUT=1
-ENV RAILS_SERVE_STATIC_FILES=1
+# Final stage for app image
+FROM base
 
-RUN SECRET_KEY_BASE=1 RAILS_GROUPS=assets bundle exec rake assets:precompile
-RUN touch /opt/app/public/assets/.prebuilt
+# Install packages needed for deployment
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y curl libsqlite3-0 libvips && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Copy built artifacts: gems, application
+COPY --from=build /usr/local/bundle /usr/local/bundle
+COPY --from=build /rails /rails
+
+# Run and own only the runtime files as a non-root user for security
+RUN useradd rails --create-home --shell /bin/bash && \
+    chown -R rails:rails db log storage tmp
+USER rails:rails
+
+# Entrypoint prepares the database.
+ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+
+# Start the server by default, this can be overwritten at runtime
+EXPOSE 3000
+CMD ["./bin/rails", "server"]
