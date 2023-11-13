@@ -144,7 +144,6 @@ GEM
     minitest (5.20.0)
     msgpack (1.6.0)
     mutex_m (0.2.0)
-    mysql2 (0.5.5)
     net-imap (0.4.4)
       date
       net-protocol
@@ -218,6 +217,8 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.6.8-aarch64-linux)
+    sqlite3 (1.6.8-x86_64-linux)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     thor (1.3.0)
@@ -261,11 +262,11 @@ DEPENDENCIES
   gitearb
   importmap-rails
   jbuilder
-  mysql2 (~> 0.5)
   puma (>= 5.0)
   rails (= 7.1.1)
   selenium-webdriver
   sprockets-rails
+  sqlite3 (~> 1.4)
   stimulus-rails
   turbo-rails
   tzinfo-data

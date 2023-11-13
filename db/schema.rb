@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_07_124729) do
-  create_table "builds", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "repo_id", null: false
+ActiveRecord::Schema[7.1].define(version: 2023_02_07_124729) do
+  create_table "builds", force: :cascade do |t|
+    t.integer "repo_id", null: false
     t.string "buildkite_id"
     t.string "number"
     t.string "status"
@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_124729) do
     t.index ["repo_id"], name: "index_builds_on_repo_id"
   end
 
-  create_table "repos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "repos", force: :cascade do |t|
     t.string "name"
     t.string "repo_owner"
     t.string "repo_name"
