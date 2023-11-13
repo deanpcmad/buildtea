@@ -8,6 +8,9 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v3
+      - name: Get short sha
+        id: shortsha
+        run: echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       - uses: docker/setup-qemu-action@v2
       - uses: docker/setup-buildx-action@v2
       - uses: docker/login-action@v2
@@ -18,7 +21,6 @@ jobs:
       - uses: docker/build-push-action@v4
         with:
           push: true
-          target: "prod"
           platforms: linux/amd64,linux/arm64
           provenance: false
-          tags: ghcr.io/deanpcmad/buildtea:commit-${{ github.sha }},ghcr.io/deanpcmad/buildtea:latest
+          tags: ghcr.io/deanpcmad/buildtea:${{ steps.shortsha.outputs.short_sha }},ghcr.io/deanpcmad/buildtea:latest
