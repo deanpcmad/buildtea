@@ -22,11 +22,11 @@ services:
       - buildtea-db
     ports:
       - 5000:5000
+    volumes:
+      # Either set this to a Docker volume
+      # or as a directory but chmod it to 1000:1000
+      - buildtea:/rails/storage
     environment:
-      WAIT_FOR_TIMEOUT: 90
-      WAIT_FOR_TARGETS: |-
-        buildtea-db:3306
-      DATABASE_URL: mysql2://buildteauser:buildteapass@buildtea-db/buildtea?pool=10
       # Generate a 128 character key and enter it here
       SECRET_KEY_BASE:
       # The full hostname of this app. Used when creating Gitea webhooks
@@ -46,19 +46,6 @@ services:
       BUILDKITE_TOKEN:
       # The slug of your Buildkite organization. e.g. buildkite.com/orgslug
       BUILDKITE_ORG:
-
-  buildtea-db:
-    image: mysql:8
-    container_name: buildtea-db
-    command: mysqld --default-authentication-plugin=mysql_native_password --skip-mysqlx
-    restart: unless-stopped
-    volumes:
-      - ./buildtea-db:/var/lib/mysql
-    environment:
-      MYSQL_DATABASE: buildtea
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: buildteauser
-      MYSQL_PASSWORD: buildteapass
 ```
 
 Then start the containers:
