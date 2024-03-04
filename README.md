@@ -16,7 +16,6 @@ services:
   buildtea:
     image: ghcr.io/deanpcmad/buildtea:latest
     container_name: buildtea
-    command: app web-server
     restart: unless-stopped
     ports:
       - 5000:5000
