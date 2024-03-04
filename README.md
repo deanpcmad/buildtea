@@ -18,8 +18,6 @@ services:
     container_name: buildtea
     command: app web-server
     restart: unless-stopped
-    depends_on:
-      - buildtea-db
     ports:
       - 5000:5000
     volumes:
