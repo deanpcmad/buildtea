@@ -86,7 +86,7 @@ GEM
       actionpack (>= 5.2)
       activemodel (>= 5.2)
     builder (3.2.4)
-    buildkiterb (1.0.0)
+    buildkiterb (1.0.1)
       faraday (~> 2.0)
     capybara (3.38.0)
       addressable
@@ -111,10 +111,10 @@ GEM
     drb (2.2.1)
     error_highlight (0.5.1)
     erubi (1.12.0)
-    faraday (2.7.10)
-      faraday-net_http (>= 2.0, < 3.1)
-      ruby2_keywords (>= 0.0.4)
-    faraday-net_http (3.0.2)
+    faraday (2.9.0)
+      faraday-net_http (>= 2.0, < 3.2)
+    faraday-net_http (3.1.0)
+      net-http
     gitearb (0.1.2)
       faraday (~> 2.0)
     globalid (1.2.1)
@@ -142,6 +142,8 @@ GEM
     minitest (5.22.2)
     msgpack (1.6.0)
     mutex_m (0.2.0)
+    net-http (0.4.1)
+      uri
     net-imap (0.4.10)
       date
       net-protocol
@@ -211,7 +213,6 @@ GEM
     reline (0.4.3)
       io-console (~> 0.5)
     rexml (3.2.5)
-    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.8.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -230,6 +231,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (0.13.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
