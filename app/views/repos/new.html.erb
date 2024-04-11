@@ -5,6 +5,7 @@
       <%= f.select :gitea_id, @gitea_repos, {prompt: "Select a Gitea Repo", label: "Gitea Repo"}, {data: { action: "change->repo-form#handleGiteaChange" }} %>
 
       <%= f.select :buildkite_slug, @buildkite_pipelines, {prompt: "Select a Buildkite Pipeline", label: "Buildkite Pipeline"}, {data: { action: "change->repo-form#handleBuildkiteChange" }} %>
+      <%= f.select :buildkite_cluster, @buildkite_clusters, {label: "Buildkite Cluster"} %>
 
       <%= f.hidden_field :repo_owner %>
       <%= f.hidden_field :repo_name %>

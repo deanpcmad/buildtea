@@ -27,10 +27,11 @@ class Repo < ApplicationRecord
       name: name,
       repository: repo_url,
       description: description,
-      configuration: "steps:\n  - label: \":pipeline:\"\n    command: \"buildkite-agent pipeline upload\""
+      configuration: "steps:\n  - label: \":pipeline:\"\n    command: \"buildkite-agent pipeline upload\"",
+      cluster_id: buildkite_cluster
     )
 
-    update(buildkite_id: pipeline.id, buildkite_slug: pipeline.slug)
+    update(buildkite_id: pipeline.id, buildkite_slug: pipeline.slug) if pipeline
   end
 
   def create_webhook
