@@ -18,7 +18,7 @@ services:
     container_name: buildtea
     restart: unless-stopped
     ports:
-      - 5000:5000
+      - 3000:3000
     volumes:
       # Either set this to a Docker volume
       # or as a directory but chmod it to 1000:1000
