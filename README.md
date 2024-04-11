@@ -39,7 +39,7 @@ services:
       # user - read
       GITEA_TOKEN:
       # An API Access Token with the following scopes:
-      # read_builds write_builds read_pipelines write_pipelines
+      # read_clusters read_builds write_builds read_pipelines write_pipelines
       BUILDKITE_TOKEN:
       # The slug of your Buildkite organization. e.g. buildkite.com/orgslug
       BUILDKITE_ORG:
