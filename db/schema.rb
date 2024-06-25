@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_02_07_124729) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_11_144229) do
   create_table "builds", force: :cascade do |t|
     t.integer "repo_id", null: false
     t.string "buildkite_id"
@@ -39,6 +39,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_02_07_124729) do
     t.string "webhook_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "buildkite_cluster"
   end
 
   add_foreign_key "builds", "repos"

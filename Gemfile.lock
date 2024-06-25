@@ -86,7 +86,7 @@ GEM
       actionpack (>= 5.2)
       activemodel (>= 5.2)
     builder (3.2.4)
-    buildkiterb (1.0.0)
+    buildkiterb (1.0.1)
       faraday (~> 2.0)
     capybara (3.38.0)
       addressable
@@ -111,10 +111,10 @@ GEM
     drb (2.2.1)
     error_highlight (0.5.1)
     erubi (1.12.0)
-    faraday (2.7.10)
-      faraday-net_http (>= 2.0, < 3.1)
-      ruby2_keywords (>= 0.0.4)
-    faraday-net_http (3.0.2)
+    faraday (2.9.0)
+      faraday-net_http (>= 2.0, < 3.2)
+    faraday-net_http (3.1.0)
+      net-http
     gitearb (0.1.2)
       faraday (~> 2.0)
     globalid (1.2.1)
@@ -128,9 +128,6 @@ GEM
     irb (1.11.2)
       rdoc
       reline (>= 0.4.2)
-    jbuilder (2.11.5)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -145,6 +142,8 @@ GEM
     minitest (5.22.2)
     msgpack (1.6.0)
     mutex_m (0.2.0)
+    net-http (0.4.1)
+      uri
     net-imap (0.4.10)
       date
       net-protocol
@@ -155,10 +154,15 @@ GEM
     net-smtp (0.4.0.1)
       net-protocol
     nio4r (2.7.0)
-    nokogiri (1.16.2-aarch64-linux)
+    nokogiri (1.16.5-aarch64-linux)
       racc (~> 1.4)
-    nokogiri (1.16.2-x86_64-linux)
+    nokogiri (1.16.5-x86_64-linux)
       racc (~> 1.4)
+    propshaft (0.8.0)
+      actionpack (>= 7.0.0)
+      activesupport (>= 7.0.0)
+      rack
+      railties (>= 7.0.0)
     psych (5.1.2)
       stringio
     public_suffix (5.0.1)
@@ -203,30 +207,24 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rake (13.1.0)
-    rdoc (6.6.2)
+    rdoc (6.6.3.1)
       psych (>= 4.0.0)
     regexp_parser (2.7.0)
     reline (0.4.3)
       io-console (~> 0.5)
-    rexml (3.2.5)
-    ruby2_keywords (0.0.5)
+    rexml (3.2.8)
+      strscan (>= 3.0.9)
     rubyzip (2.3.2)
     selenium-webdriver (4.8.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sprockets (4.2.0)
-      concurrent-ruby (~> 1.0)
-      rack (>= 2.2.4, < 4)
-    sprockets-rails (3.4.2)
-      actionpack (>= 5.2)
-      activesupport (>= 5.2)
-      sprockets (>= 3.0.0)
     sqlite3 (1.6.8-aarch64-linux)
     sqlite3 (1.6.8-x86_64-linux)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     stringio (3.1.0)
+    strscan (3.1.0)
     thor (1.3.1)
     timeout (0.4.1)
     turbo-rails (1.3.3)
@@ -235,6 +233,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (0.13.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -267,11 +266,10 @@ DEPENDENCIES
   error_highlight (>= 0.4.0)
   gitearb
   importmap-rails
-  jbuilder
+  propshaft
   puma (>= 5.0)
   rails (= 7.1.3.2)
   selenium-webdriver
-  sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
   turbo-rails

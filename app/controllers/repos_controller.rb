@@ -41,6 +41,13 @@ class ReposController < ApplicationController
       data: {owner: repo[:owner], name: repo[:name], desc: repo[:desc], url: repo[:url]}
     ]}
 
+    clusters = Buildkite::Cluster.list
+
+    @buildkite_clusters = clusters.data.map{|cluster| [
+      cluster.name,
+      cluster.id
+    ]}
+
     pipelines = Buildkite::Pipeline.list
 
     @buildkite_pipelines = pipelines.data.map{|pipeline| [
@@ -95,7 +102,7 @@ class ReposController < ApplicationController
   private
 
   def safe_params
-    params.require(:repo).permit(:gitea_id, :name, :repo_owner, :repo_name, :repo_url, :description, :buildkite_slug, :buildkite_id)
+    params.require(:repo).permit(:gitea_id, :name, :repo_owner, :repo_name, :repo_url, :description, :buildkite_slug, :buildkite_cluster, :buildkite_id)
   end
 
   def set_repo
